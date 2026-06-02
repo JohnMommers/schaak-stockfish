@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Schaak Studio</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="board-panel" aria-label="Schaakbord">
+        <div class="topbar">
+          <div>
+            <p class="eyebrow">Stockfish schaakapp</p>
+            <h1>Schaak Studio</h1>
+          </div>
+          <div class="turn-pill" id="turnPill">Wit aan zet</div>
+        </div>
+
+        <div class="board-wrap">
+          <div class="rank-labels" aria-hidden="true">
+            <span>8</span><span>7</span><span>6</span><span>5</span>
+            <span>4</span><span>3</span><span>2</span><span>1</span>
+          </div>
+          <div class="eval-bar" aria-label="Evaluatiebar">
+            <div class="eval-fill" id="evalFill"></div>
+            <span id="evalBarLabel">0.0</span>
+          </div>
+          <div class="board" id="board" role="grid" aria-label="Schaakbord"></div>
+          <div class="file-labels" aria-hidden="true">
+            <span>a</span><span>b</span><span>c</span><span>d</span>
+            <span>e</span><span>f</span><span>g</span><span>h</span>
+          </div>
+        </div>
+      </section>
+
+      <aside class="control-panel" aria-label="Bediening">
+        <div class="status-block">
+          <span class="status-dot" id="engineDot"></span>
+          <div>
+            <strong id="statusTitle">Engine laden</strong>
+            <p id="statusText">Stockfish wordt gestart...</p>
+          </div>
+        </div>
+
+        <div class="analysis-block">
+          <div class="analysis-head">
+            <strong>Evaluatie</strong>
+            <span id="evalBadge">0.0</span>
+          </div>
+          <p id="evalText">Beginstelling: ongeveer gelijk.</p>
+        </div>
+
+        <div class="field-group">
+          <label for="modeSelect">Modus</label>
+          <select id="modeSelect">
+            <option value="human">Speler vs Stockfish</option>
+            <option value="bots">Bot vs bot</option>
+          </select>
+        </div>
+
+        <div class="field-grid" id="humanControls">
+          <div class="field-group">
+            <label for="playerColor">Jij speelt</label>
+            <select id="playerColor">
+              <option value="w">Wit</option>
+              <option value="b">Zwart</option>
+            </select>
+          </div>
+          <div class="field-group">
+            <label for="stockfishElo">Stockfish Elo</label>
+            <select id="stockfishElo"></select>
+          </div>
+        </div>
+
+        <div class="field-grid hidden" id="botControls">
+          <div class="field-group">
+            <label for="whiteBotElo">Witte bot Elo</label>
+            <select id="whiteBotElo"></select>
+          </div>
+          <div class="field-group">
+            <label for="blackBotElo">Zwarte bot Elo</label>
+            <select id="blackBotElo"></select>
+          </div>
+        </div>
+
+        <div class="field-group">
+          <div class="label-row">
+            <label for="speedRange">Speelsnelheid</label>
+            <span id="speedValue">1.2 s</span>
+          </div>
+          <input id="speedRange" type="range" min="300" max="3500" step="100" value="1200">
+        </div>
+
+        <div class="button-row">
+          <button id="newGameBtn" type="button">Nieuw spel</button>
+          <button id="pauseBtn" type="button" class="secondary">Pauze</button>
+        </div>
+
+        <div class="move-card">
+          <div class="card-header">
+            <strong>Zetten</strong>
+            <button id="copyFenBtn" type="button" class="ghost">FEN</button>
+          </div>
+          <ol id="moveList" class="move-list"></ol>
+        </div>
+      </aside>
+    </main>
+
+    <script type="module" src="app.js"></script>
+  </body>
+</html>
